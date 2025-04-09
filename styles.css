@@ -40,13 +40,31 @@ nav {
     background: #fff;
     padding: 10px 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;  /* Aligns logo to the left */
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: 120px;  /* Adjust this value based on your needs */
+    margin-right: auto;  /* Pushes everything else to the right */
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+nav ul {
+    margin-left: 20px;  /* Adds some space between logo and navigation */
 }
 
 /* Update color scheme to match logo */
@@ -153,18 +171,40 @@ nav ul li a {
 }
 
 .cta-buttons {
-    position: relative;
-    z-index: 2;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 3;
+}
+
+.cta-primary, .cta-secondary {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .cta-primary {
-    background: #3498db;
+    background: #2E8B57;
     color: white;
+    border: none;
 }
 
 .cta-secondary {
-    background: white;
-    color: #3498db;
+    background: #FF8C00;
+    color: white;
+    border: none;
+}
+
+.cta-primary:hover, .cta-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* Sections */
@@ -252,31 +292,88 @@ footer {
     align-items: center;
     text-align: center;
     padding: 0 5%;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                url('images/event-hall.jpg') center/cover no-repeat,
-                url('images/orphanage.jpg') center/cover no-repeat,
-                url('images/oldage-home.jpg') center/cover no-repeat;
-    background-blend-mode: overlay;
+    background: linear-gradient(45deg, rgba(46, 139, 87, 0.8), rgba(255, 140, 0, 0.8)),
+                url('images/event-hall.jpg') center/cover no-repeat;
+    background-blend-mode: soft-light;
     color: white;
-    animation: slideBackground 15s infinite;
+    animation: gradientShift 15s infinite;
+    position: relative;
+    overflow: hidden;
 }
 
-@keyframes slideBackground {
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.6) 100%);
+    z-index: 1;
+}
+
+.hero .slide-content {
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+@keyframes gradientShift {
     0%, 33% {
-        background-image: 
-            linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url('images/event-hall.jpg');
+        background: linear-gradient(45deg, rgba(46, 139, 87, 0.8), rgba(255, 140, 0, 0.8)),
+                    url('images/event-hall.jpg') center/cover no-repeat;
     }
     34%, 66% {
-        background-image: 
-            linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url('images/orphanage.jpg');
+        background: linear-gradient(45deg, rgba(255, 140, 0, 0.8), rgba(46, 139, 87, 0.8)),
+                    url('images/orphanage.jpg') center/cover no-repeat;
     }
     67%, 100% {
-        background-image: 
-            linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url('images/oldage-home.jpg');
+        background: linear-gradient(45deg, rgba(46, 139, 87, 0.8), rgba(255, 140, 0, 0.8)),
+                    url('images/oldage-home.jpg') center/cover no-repeat;
     }
 }
 
-/* Rest of the styles remain the same */
+.slide {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.slide h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.slide p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Remove or replace these styles */
+nav ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #2c3e50;
+    padding: 0.5rem 1rem;
+}
+
+/* Delete these button-related styles */
+.nav-buttons,
+.nav-button,
+.nav-button.learn,
+.nav-button.get-started,
+.nav-button:hover {
+    /* These styles should be removed */
+}
