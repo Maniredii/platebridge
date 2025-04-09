@@ -377,3 +377,33 @@ nav ul li a {
 .nav-button:hover {
     /* These styles should be removed */
 }
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-right: 50px;
+}
+
+.brand-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #2E8B57;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-left: 15px;
+}
+
+.brand-title span {
+    color: #FF8C00;
+    font-style: italic;
+    margin-left: 5px;
+}
+
+.logo-container img {
+    width: 55px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
